@@ -1,3 +1,7 @@
+from __future__ import annotations
+from random import randint
+from abc import ABC, abstractmethod
+
 """3) Crie uma superclasse Conta com os seguintes atributos:
 número da conta, titular e saldo.
 Essa superclasse deve implementar os seguintes métodos: depositar(), sacar(), transferir().
@@ -8,10 +12,6 @@ Conta corrente: 0.2%
 Conta poupança: 0.5%
 Conta investimento: 0.8%
 """
-from __future__ import annotations
-from random import randint
-from abc import ABC, abstractmethod
-
 class Conta(ABC):
     """Conta representa uma conta bancária.
 
@@ -19,7 +19,7 @@ class Conta(ABC):
         titular (str): Nome do titular da conta.
     """
 
-    def __init__(self, titular: str):
+    def __init__(self, titular: str) -> None:
         self.__numero = randint(1, 100_000)
         self.titular = titular
         self.__saldo = 0
@@ -28,7 +28,7 @@ class Conta(ABC):
         return f"Titular: {self.titular} | Saldo: {self.__saldo}"
 
     @property
-    def numero_conta(self):
+    def numero(self):
         """(int): Número da conta."""
         return self.__numero
 
@@ -41,7 +41,7 @@ class Conta(ABC):
     def saldo(self, valor: float):
         if valor < 0:
             raise ValueError("Saldo não pode ser negativo.")
-            self.__saldo= valor
+        self.__saldo = valor
 
     def sacar(self, quantia: float) -> bool:
         """Saca um valor da conta.
@@ -55,7 +55,6 @@ class Conta(ABC):
         if self.__saldo >= quantia:
             self.__saldo -= quantia
             return True
-        
         return False
         
 

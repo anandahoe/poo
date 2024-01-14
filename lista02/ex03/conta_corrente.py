@@ -5,10 +5,10 @@ class ContaCorrente(Conta):
     def __init__(self, titular: str, limite: float):
         super().__init__(titular)
         self.__limite = limite
-        
+    
     @property
-    def limite(self):
-        return self.__limite
+    def limit(self):
+        return self.__limit
     
     def sacar(self, quantia: float) -> bool:
         """Saca um valor da conta.
@@ -19,16 +19,15 @@ class ContaCorrente(Conta):
         Returns:
             True caso o saque tenha sido realizado com sucesso, False caso contrário.
         """
-        super().sacar(quantia)
         if self.saldo + self.__limite < quantia:
+            print("Saldo Indisponível")
             return False
         
         if self.saldo < quantia:
-            self.__limite -= (quantia - self.saldo)
+            self.__limite -= quantia - self.saldo
             self.saldo = 0
         else:
             self.saldo -= quantia
-        
         return True
     
     def taxa_deposito(self) -> float:
