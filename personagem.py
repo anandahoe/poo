@@ -1,6 +1,7 @@
 from abc import ABC
+from habilidades_personagem import IHabilidadesPersonagem
 
-class Personagem(ABC):
+class Personagem(IHabilidadesPersonagem, ABC):
     """Personagem representa um personagem em um jogo.
     
     Attributes:
@@ -23,7 +24,11 @@ class Personagem(ABC):
 
     def morrer(self):
         """Realiza a ação de morte do personagem."""
-        print(f"{self.nome} foi derrotado!")      
+        print(f"{self.nome} foi derrotado!")
+    
+    def usar_habilidade_especial(self) -> None:
+        """Utiliza a habilidade especial do personagem."""
+        #Não implementei nada para esse método
 
 if __name__ == "__main__":
     personagem = Personagem("Ananda", 1, 10)
